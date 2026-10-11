@@ -1,0 +1,432 @@
+/* 1. Reset, Base y Ancho Fijo Global (Formato App Móvil Estricto) */
+html {
+  overflow-y: scroll; /* Mantiene la barra de scroll fija para evitar saltos globales */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.5rem 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+  text-align: center;
+}
+
+h1 {
+    color: #d4b271;
+}
+/* REGLA MAESTRA: Header, Navegación y Contenedores comparten el mismo ancho exacto (480px) */
+header, 
+nav, 
+#weeks-container, 
+#questions-container, 
+.exam-actions {
+  width: 100%;
+  max-width: 480px; /* Ancho fijo estricto e inalterable en cualquier pantalla */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  margin-bottom: 1.5rem;
+}
+
+/* 2. Navegación Principal (Píldora Moderna sincronizada al mismo ancho) */
+nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  
+  /* [CUANDO TENGAS LOS ASSETS DE LA PÍLLORA]: Descomenta la línea de abajo si usas imagen */
+  /* background-image: url('nav-fondo.png'); background-size: 100% 100%; background-repeat: no-repeat; */
+  
+  /* Color oscuro con opacidad (0.75 = 75% opaco / 25% transparente). 
+     Puedes ajustar ese último número entre 0.4 (muy transparente) y 0.9 (casi sólido). */
+  background-color: #623892; 
+  
+  /* Borde sutil también translúcido para que combine */
+  border: 1px solid rgba(46, 48, 74, 0.8); 
+  
+  border-radius: 40px;       
+  padding: 3px;          
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
+  height: 50px;     
+  overflow: hidden; 
+}
+
+nav button {
+  position: relative;
+  width: 100%;
+  height: 100%; 
+  padding: 0; 
+  font: 600 0.9rem inherit;
+  color: #d4b271; 
+  background-color: transparent;
+  border: none;
+  border-radius: 36px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: color 0.15s ease;
+}
+
+/* Líneas divisorias estáticas entre botones inactivos */
+nav button:not(:last-child) {
+  background-image: linear-gradient(to bottom, transparent 25%, rgba(212, 178, 113, 0.25) 25%, rgba(212, 178, 113, 0.25) 75%, transparent 75%);
+  background-size: 1px 100%;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+/* Ocultar divisoria si el botón o el adyacente están activos */
+nav button[aria-pressed="true"],
+nav button:has(+ button[aria-pressed="true"]) {
+  background-image: none;
+  
+}
+
+/* --- ESTADO ACTIVO --- */
+nav button[aria-pressed="true"] {
+  /* [CUANDO TENGAS LOS ASSETS]: Descomenta la línea de abajo y borra background-color y box-shadow */
+  /* background-image: url('nav-activo.svg'); background-size: 100% 100%; background-repeat: no-repeat; */
+  background-color: #f2f3f5;
+  color: #d4b271; 
+  box-shadow: 0 0 0 1.5px #d4b271, 0 4px 10px rgba(0,0,0,0.15); 
+  z-index: 2; 
+}
+
+@media (hover: hover) {
+  nav button:not([aria-pressed="true"]):hover {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #ebd197; 
+  }
+}
+/* 3. Contenedor de Semanas y Exámenes */
+#weeks-container {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loading-text { color: #6c757d; font-size: 0.95rem; }
+
+.week-banner {
+  width: 100%;
+  padding: 1.5rem 1.5rem;
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 48px;
+}
+
+.week-banner.evaluation { 
+  border-color: #dee2e6; /* Rojo elegante */
+  background-color: rgba(255, 255, 255, 0.75); 
+}
+
+.week-header h2 { font-size: 1.05rem; font-weight: 700; color: #d4b271; margin-bottom: 0.75rem;text-align: center; }
+
+.week-desc {
+  font-size: 0.9rem;
+  color: #6c757d;
+  line-height: 1.4;
+  margin-bottom: 0.85rem;
+  text-align: center;
+}
+
+.week-divider {
+  border: none;
+  border-top: 1px solid #e9ecef;
+  margin-bottom: 1rem;
+}
+
+.exams-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.exam-btn {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 0.95rem inherit;
+  color: #d4b271;                  /* Texto dorado elegante */
+  background-color: #623892;       /* Fondo oscuro cósmico a juego */
+  border: 1px solid #2e304a;       /* Borde sutil */
+  border-radius: 48px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.exam-btn:active { 
+  transform: scale(0.95); 
+  background-color: #1f2238; 
+}
+
+@media (hover: hover) {
+  .exam-btn:hover { 
+    background-color: #1f2238; 
+    border-color: #d4b271; 
+    transform: translateY(-1px); 
+  }
+}
+
+.no-exams { font-size: 0.85rem; color: #adb5bd; }
+
+/* 4. Vista del Examen (Superposición a pantalla completa limpia) */
+.hidden { display: none !important; }
+
+#exam-view {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: #f8f9fa;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: left;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.exam-header {
+  position: sticky;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  max-width: none; 
+  background-color: #ffffff;
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+#back-btn {
+  position: absolute;
+  left: 1rem;
+  background: none;
+  border: none;
+  color: #d4b271;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#exam-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #d4b271;
+  margin: 0;
+}
+
+/* 5. Preguntas del Examen */
+#questions-container {
+  padding: 1.5rem 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.question-card {
+  background-color: #ffffff;
+  padding: 1.25rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e9ecef;
+}
+
+.question-text { font-size: 1rem; font-weight: 600; color: #212529; line-height: 1.5; margin-bottom: 1.25rem; }
+
+.options-group { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.option-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.option-label input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.custom-radio {
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  border: 2px solid #adb5bd;
+  border-radius: 50%;
+  margin-top: 2px;
+  transition: all 0.2s ease;
+}
+
+.option-text { font-size: 0.95rem; color: #495057; line-height: 1.4; }
+
+/* Alternativas seleccionadas (acento Ámbar / Dorado cálido) */
+.option-label:has(input[type="radio"]:checked) { 
+  background-color: #fcf8ee; /* Tono crema/dorado muy suave y neutral */
+  border-color: #d4b271;     /* Dorado cálido */
+}
+
+.option-label:has(input[type="radio"]:checked) .custom-radio {
+  border-color: #d4b271; 
+  background-color: #d4b271; 
+  box-shadow: inset 0 0 0 4px #fcf8ee;
+}
+
+/* 6. Resultados y Retroalimentación */
+.exam-actions {
+  padding: 0 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.submit-btn {
+  width: 100%;
+  min-height: 52px;
+  background-color: #d4b271;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.submit-btn:active { transform: scale(0.97); background-color: #146c43; }
+
+.results-box {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.results-box h3 { margin-bottom: 1rem; color: #212529; }
+.results-box p { font-size: 1.05rem; color: #495057; margin-bottom: 0.5rem; }
+.results-box h2 { font-size: 2.5rem; margin-top: 1rem; }
+
+.feedback-box {
+  margin-top: 1.25rem;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.feedback-box.correct { background-color: #d1e7dd; color: #0f5132; }
+.feedback-box.incorrect { background-color: #f8d7da; color: #842029; }
+
+.option-label.is-correct { background-color: #d1e7dd !important; border-color: #198754 !important; color: #0f5132; }
+.option-label.is-wrong { background-color: #f8d7da !important; border-color: #dc3545 !important; color: #842029; }
+
+/* Botón especial para Pruebas Globales y Examen Final (Estilo Cósmico / Armonizado) */
+.sim-exam-btn {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  font: 600 1rem inherit;
+  color: #d4b271;                 /* Texto dorado pálido elegante */
+  background-color: #623892;      /* Mismo fondo oscuro de la barra superior */
+  border: 1px solid #2e304a;      /* Borde sutil a juego */
+  border-radius: 64px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sim-exam-btn:active {
+  transform: scale(0.97);
+  background-color: #1f2238;
+}
+
+@media (hover: hover) {
+  .sim-exam-btn:hover {
+    background-color: #1f2238;
+    border-color: #d4b271;       /* Realce dorado sutil al pasar el cursor */
+    transform: translateY(-1px);
+  }
+}
+/* --- BOTONES FINALES DE RESULTADOS (Reintentar y Menú) --- */
+.result-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.action-btn {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 12px;
+  font: 600 0.95rem inherit;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botón de Reintentar (Estilo azul claro armónico) */
+.action-btn.retry {
+  background-color: #623892;
+  color: #d4b271;
+  border: 1px solid #2e304a;
+}
+
+.action-btn.retry:active {
+  background-color: #1f2238;
+  transform: scale(0.97);
+}
+
+/* Botón de Volver al Menú (Estilo cósmico oscuro a juego con la barra superior) */
+.action-btn.menu {
+  background-color: #623892;
+  color: #d4b271;
+  border: 1px solid #2e304a;
+}
+
+.action-btn.menu:active {
+  background-color: #1f2238;
+  transform: scale(0.97);
+}
+
+@media (hover: hover) {
+  .action-btn.retry:hover { 
+    background-color: #1f2238; 
+    border-color: #d4b271; 
+  }
+}
