@@ -1,45 +1,286 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bases Científicas de la Medicina IV</title>
-  
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" type="module"></script>
-</head>
-<body>
+<html lang="es" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <!-- Motor KaTeX para renderizar fórmulas y símbolos ($...$) -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+        <title>Bases Científicas de la Medicina IV</title>
+    </head>
+    <body>
+        <h1 class="titulo-malote">Bases Científicas de la Medicina IV</h1>
 
-  <header>
-    <h1>Bases Científicas de la Medicina IV</h1>
-  </header>
+        <!-- Barra de Navegación de Pruebas -->
+        <nav class="nav" id="js-nav">
+            <div class="nav_pointer" id="js-pointer"></div>
+            <ul class="nav_list">
+                <li><a href="#prueba1">Prueba 1</a></li>
+                <li><a href="#prueba2">Prueba 2</a></li>
+                <li><a href="#prueba3">Prueba 3</a></li>
+            </ul>
+        </nav>
 
-  <main>
-    <nav aria-label="Navegación de evaluaciones">
-      <button type="button" aria-pressed="true" data-prueba="1">Prueba 1</button>
-      <button type="button" aria-pressed="false" data-prueba="2">Prueba 2</button>
-      <button type="button" aria-pressed="false" data-prueba="3">Prueba 3</button>
-    </nav>
+        <!-- PRUEBA 1 -->
+        <div class="container" id="prueba1">
+            <div class="items">
+                <h1>Semana 1</h1>
+                <p>Sistema Nervioso Humano, eje hipotálamo-hipófisis-periferia y sinapsis autonómicas.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="1">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
 
-    <!-- Contenedor dinámico de semanas -->
-    <section id="weeks-container" aria-label="Contenido de semanas"></section>
-  </main>
-  <!-- Vista del examen (Oculta por defecto) -->
-  <section id="exam-view" class="hidden" aria-hidden="true">
-    <header class="exam-header">
-      <button type="button" id="back-btn" aria-label="Volver atrás">
-        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-      </button>
-      <h2 id="exam-title">Título</h2>
-    </header>
-    
-    <div id="questions-container"></div>
+            <div class="items">
+                <h1>Semana 2</h1>
+                <p>Metabolismo energético, páncreas endocrino, regulación de glicemia y antagonismo SNA.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="2">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
 
-    <!-- Contenedor de acciones y resultados -->
-    <div class="exam-actions">
-      <button type="button" id="submit-exam-btn" class="submit-btn">Entregar Examen</button>
-      <div id="exam-results" class="results-box hidden"></div>
-    </div>
-  </section>
-</body>
+            <div class="items">
+                <h1>Semana 3</h1>
+                <p>Glándulas tiroides y suprarrenales. Regulación magno y parvocelular.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="3">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items">
+                <h1>Semana 4</h1>
+                <p>Asas de retroalimentación, regulación del sistema reproductor e integración neuroendocrina.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="4">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items-prueba">
+                <h1>Semana 5</h1>
+                <div class="boton-prueba">
+                    <button class="cuadrado-examen-especial" data-semana="5">Prueba 1</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRUEBA 2 -->
+        <div class="container oculto" id="prueba2">
+            <div class="items">
+                <h1>Semana 6</h1>
+                <p>Fisiología y evaluación renal, función del nefrón y regulación de volemia/osmolaridad.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="6">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items">
+                <h1>Semana 7</h1>
+                <p>Aclaramiento renal, balances hidrosalino y ácido-base.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="7">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items">
+                <h1>Semana 8</h1>
+                <p>Fisiología cardiovascular, electrofisiología, ECG y mecánica cardíaca.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="8">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items">
+                <h1>Semana 9</h1>
+                <p>Variables hemodinámicas, mecánica y regulación autonómica cardíaca.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="9">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items">
+                <h1>Semana 10</h1>
+                <p>Flujo, presión y lecho vascular. Circulación menor y coronaria.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="10">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items-prueba">
+                <h1>Semana 11</h1>
+                <div class="boton-prueba">
+                    <button class="cuadrado-examen-especial" data-semana="11">Prueba 2</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRUEBA 3 -->
+        <div class="container oculto" id="prueba3">
+            <div class="items">
+                <h1>Semana 12</h1>
+                <p>Sistema respiratorio, mecánica ventilatoria e intercambio gaseoso.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="12">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items">
+                <h1>Semana 13</h1>
+                <p>Regulación autonómica de la función respiratoria y reflejos.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="13">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items">
+                <h1>Semana 14</h1>
+                <p>Anatomía gastrointestinal, procesos de digestión y absorción.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="14">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items">
+                <h1>Semana 15</h1>
+                <p>Procesos mecánicos/químicos intestinales y fisiología hepática.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="15">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items">
+                <h1>Semana 16</h1>
+                <p>Enzimas Digestivas y Cinética Enzimática Gastrointestinal.</p>
+                <hr class="separador">
+                <div class="contenedor-botones" data-semana="16">
+                    <button data-examen="0">1</button>
+                    <button data-examen="1">2</button>
+                    <button data-examen="2">3</button>
+                    <button data-examen="3">4</button>
+                    <button data-examen="4">5</button>
+                </div>
+            </div>
+
+            <div class="items-prueba">
+                <h1>Semana 17</h1>
+                <div class="boton-prueba">
+                    <button class="cuadrado-examen-especial" data-semana="17">Prueba 3</button>
+                </div>
+            </div>
+            <div class="items-prueba">
+                <h1>Semana 18</h1>
+                <div class="boton-prueba">
+                    <button class="cuadrado-examen-especial" data-semana="18">Examen</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista del examen (Superposición con encabezado fijo y flecha atrás) -->
+        <section id="exam-view" class="hidden" aria-hidden="true">
+            <header class="exam-header">
+                <button type="button" id="back-btn" aria-label="Volver atrás">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </button>
+                <h2 id="exam-title">Semana 1</h2>
+            </header>
+
+            <!-- Barra lateral de navegación por barritas -->
+            <aside id="quiz-progress-nav" class="quiz-progress-nav" aria-label="Navegación de preguntas"></aside>
+
+            <div id="questions-container"></div>
+
+            <div class="exam-actions">
+                <button type="button" id="submit-exam-btn" class="submit-btn">Entregar Examen</button>
+                <div id="exam-results" class="results-box hidden"></div>
+            </div>
+        </section>
+
+        <!-- Archivos de JavaScript de las semanas -->
+        <script src="semana01.js"></script>
+        <script src="semana02.js"></script>
+        <script src="semana03.js"></script>
+        <script src="semana04.js"></script>
+        <script src="semana06.js"></script>
+        <script src="semana07.js"></script>
+        <script src="semana08.js"></script>
+        <script src="semana09.js"></script>
+        <script src="semana10.js"></script>
+        <script src="semana12.js"></script>
+        <script src="semana13.js"></script>
+        <script src="semana14.js"></script>
+        <script src="semana15.js"></script>
+        <script src="semana16.js"></script>
+
+        <!-- Script unificado de control y lógica -->
+        <script src="app.js"></script>
+    </body>
 </html>
