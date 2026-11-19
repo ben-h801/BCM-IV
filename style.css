@@ -3,6 +3,7 @@
    ========================================== */
 html {
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 * {
@@ -17,6 +18,8 @@ body {
     color: #212529;
     padding: 1em;
     min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,8 +34,9 @@ body {
 .titulo-malote {
     color: #d4b271;
     text-align: center;
-    font-size: 2rem;
-    padding: 0.5em;
+    font-size: clamp(1.3rem, 5.2vw, 2rem);
+    padding: 0.5em 0.25em;
+    width: 100%;
 }
 
 /* ==========================================
@@ -107,15 +111,16 @@ a, a:visited, a:focus, a:active {
     flex-direction: column;
     align-items: center;
     gap: 1em;
+    width: 100%;
 }
 
 .container .items {
     background-color: white;
-    padding: 2em 2em;
+    padding: 2em;
     border: 1px solid #dee2e6;
     border-radius: 2.5em;
-    width: 500px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 500px;
     min-height: 200px;
 }
 
@@ -124,8 +129,8 @@ a, a:visited, a:focus, a:active {
     padding: 1em 2em;
     border: 1px solid #dee2e6;
     border-radius: 2.5em;
-    width: 500px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 500px;
     min-height: 120px;
 }
 
@@ -153,14 +158,14 @@ a, a:visited, a:focus, a:active {
 .contenedor-botones {
     display: flex;
     justify-content: center;
-    gap: 0.5em;
+    gap: clamp(0.35em, 2vw, 0.5em);
 }
 
 .container .contenedor-botones button {
     border-radius: 50%;
     margin-top: 1.5em;
-    width: 50px;
-    height: 50px;
+    width: clamp(40px, 11.5vw, 50px);
+    height: clamp(40px, 11.5vw, 50px);
     outline: none;
     background: #623892;
     color: #d4b271;
@@ -192,11 +197,27 @@ a, a:visited, a:focus, a:active {
     will-change: transform;
 }
 
-/* Tu animación hover original */
 .container button:hover {
     background: #d4b271;
     color: #fff;
     opacity: .8;
+}
+
+/* Ajuste fino de márgenes internos en celulares */
+@media (max-width: 540px) {
+    body {
+        padding: 0.85em;
+    }
+
+    .container .items {
+        padding: 1.5em 1.25em;
+        border-radius: 2em;
+    }
+
+    .container .items-prueba {
+        padding: 1em 1.25em;
+        border-radius: 2em;
+    }
 }
 
 /* ==========================================
